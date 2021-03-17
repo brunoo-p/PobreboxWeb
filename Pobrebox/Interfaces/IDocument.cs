@@ -7,8 +7,7 @@ namespace Pobrebox.Interfaces
     {
         bool AddDocument(Document doc);
         bool ExcludeDocument(int id);
-        List<Document> GetDocumentForUser(int id);
-        List<Document> GetDocumentForDirectory(string directory);
+        List<Document> GetDocumentForDirectory(int idUser, string directory);
         
     }
 }

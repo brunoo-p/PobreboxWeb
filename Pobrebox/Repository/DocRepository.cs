@@ -75,14 +75,40 @@ namespace Pobrebox.Repository
                 }
         }
 
-        public List<Document> GetDocumentForDirectory(string directory)
+        public List<Document> GetDocumentForDirectory(int idUser, string directory)
         {
-            throw new System.NotImplementedException();
-        }
+            var docs = new List<Document>();
+            try{
+                using(var connection = openConnection())
+                {
+                    using(var command = connection.CreateCommand())
+                    {
+                        connection.Open();
+                        command.CommandText = "Select * from documents where IdUser=@idUser AND Directory=@directory AND isDeleted=0";
+                        command.Parameters.Add(new SqlParameter("idUser", idUser));
+                        command.Parameters.Add(new SqlParameter("directory", directory));
 
-        public List<Document> GetDocumentForUser(int id)
-        {
-            throw new System.NotImplementedException();
+                        using(var reader = command.ExecuteReader())
+                        {
+                            while(reader.Read())
+                            {
+                                docs.Add( new Document(
+                                    id: Convert.ToInt32(reader["Id"].ToString()),
+                                    idUser: Convert.ToInt32(reader["IdUser"].ToString()),
+                                    docName: reader["DocName"].ToString(),
+                                    directory: reader["Directory"].ToString(),
+                                    content: reader["Content"].ToString()
+                                ));
+                            }
+                        }
+                        connection.Close();
+                    }
+                }
+                return docs;
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

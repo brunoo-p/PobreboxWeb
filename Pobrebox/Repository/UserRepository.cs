@@ -83,31 +83,6 @@ namespace Pobrebox.Repository
             }
         }
 
-        private List<Document> getAllDocs(int id)
-        {   
-            var doc = new List<Document>();
-            using (var command = connection.CreateCommand())
-            {
-                command.CommandText = "Select Id, IdUser, DocName, Directory, Content from Documents where IdUser='"+id+"' AND isDeleted = 0";
-                connection.Open();
-                using(var reader = command.ExecuteReader())
-                {
-                    while(reader.Read())
-                    {
-                        doc.Add(new Document(
-                            id: Convert.ToInt32(reader[0].ToString()),
-                            idUser: Convert.ToInt32(reader[1].ToString()),
-                            docName: reader[2].ToString(),
-                            directory: reader[3].ToString(),
-                            content: reader[4].ToString()
-                            )
-                        );
-                    }
-                }   
-            }
-            connection.Close();
-            return doc;
-        }
 
         public bool Register(User user)
         {

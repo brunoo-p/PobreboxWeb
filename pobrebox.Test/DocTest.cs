@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Pobrebox.Model;
 using Pobrebox.Repository;
 using Xunit;
@@ -45,6 +46,24 @@ namespace pobrebox.Test
             Assert.IsType<bool>(wasExcluded);
             Assert.NotEqual(isExcluded, wasExcluded);
             Assert.True(wasExcluded);
+        }
+
+        [Fact]
+        [Trait("Document", "GetForDirectory")]
+        public void BuscarDocumentoPorDiretorio()
+        {
+            //average
+            int idUser = 1;
+            string directory = "photos";
+            int quantityDoc = 2;
+
+            //act
+            List<Document> documents = repository.GetDocumentForDirectory(idUser, directory);
+
+            //assert
+            Assert.NotNull(documents);
+            Assert.NotEmpty(documents);
+            Assert.Equal(quantityDoc, documents.Count);
         }
     }
 }

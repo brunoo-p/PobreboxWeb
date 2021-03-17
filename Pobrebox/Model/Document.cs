@@ -10,15 +10,7 @@ namespace Pobrebox.Model
         public bool IsDeleted { get; set; }
         public string Content { get; set; }
 
-        public Document( int idUser, string docName, string directory, string content, bool isDeleted)
-        {
-            //Id = id;
-            IdUser = idUser;
-            DocName = docName;
-            Directory = directory;
-            IsDeleted = isDeleted;
-            Content = content;
-        }
+
 
         public Document( int id, int idUser, string docName, string directory, string content)
         {
@@ -26,6 +18,15 @@ namespace Pobrebox.Model
             IdUser = idUser;
             DocName = docName;
             Directory = directory;
+            Content = content;
+        }
+        public Document( int idUser, string docName, string directory, string content, bool isDeleted)
+        {
+            //Id = id;
+            IdUser = idUser;
+            DocName = docName;
+            Directory = directory;
+            IsDeleted = isDeleted;
             Content = content;
         }
     }
