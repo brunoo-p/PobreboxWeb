@@ -1,18 +1,24 @@
 
 
+using System.ComponentModel.DataAnnotations;
+
 namespace Pobrebox.Model
 {
     public class Document : Base
     {
+        [Required]
         public int IdUser { get; set; }
+        [Required]
         public string DocName { get; set; }
+        [Required]
         public string Directory { get; set; }
         public bool IsDeleted { get; set; }
-        public string Content { get; set; }
+        [Required]
+        public byte[] Content { get; set; }
 
 
 
-        public Document( int id, int idUser, string docName, string directory, string content)
+        public Document( int id, int idUser, string docName, string directory, byte[] content)
         {
             Id = id;
             IdUser = idUser;
@@ -20,9 +26,8 @@ namespace Pobrebox.Model
             Directory = directory;
             Content = content;
         }
-        public Document( int idUser, string docName, string directory, string content, bool isDeleted)
+        public Document( int idUser, string docName, string directory, byte[] content, bool isDeleted)
         {
-            //Id = id;
             IdUser = idUser;
             DocName = docName;
             Directory = directory;

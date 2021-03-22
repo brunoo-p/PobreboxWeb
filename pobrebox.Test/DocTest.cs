@@ -4,10 +4,10 @@ using Pobrebox.Repository;
 using Xunit;
 
 namespace pobrebox.Test
-{
+{    
     public class DocTest
-    {
-        DocRepository repository = new DocRepository();
+    {   
+        private DocRepository repository;
 
         [Fact]
         [Trait("Document", "Add")]
@@ -33,14 +33,14 @@ namespace pobrebox.Test
 
         [Fact]
         [Trait("Document", "Exclude")]
-        public void ExcluirDocumento()
+        public async void ExcluirDocumento()
         {
             //average
             int idImageExclude = 1;
             bool isExcluded = false;
 
             //act
-            bool wasExcluded = repository.ExcludeDocument(idImageExclude);
+            bool wasExcluded = await repository.ExcludeDocument(idImageExclude);
             
             //assert
             Assert.IsType<bool>(wasExcluded);
@@ -50,7 +50,7 @@ namespace pobrebox.Test
 
         [Fact]
         [Trait("Document", "GetForDirectory")]
-        public void BuscarDocumentoPorDiretorio()
+        public async void BuscarDocumentoPorDiretorio()
         {
             //average
             int idUser = 1;
@@ -58,7 +58,7 @@ namespace pobrebox.Test
             int quantityDoc = 2;
 
             //act
-            List<Document> documents = repository.GetDocumentForDirectory(idUser, directory);
+            List<Document> documents = await repository.GetDocumentForDirectory(idUser, directory);
 
             //assert
             Assert.NotNull(documents);

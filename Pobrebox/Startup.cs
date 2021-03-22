@@ -6,11 +6,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Pobrebox.Interfaces;
 using Pobrebox.Repository;
 
 namespace Pobrebox
@@ -27,9 +30,13 @@ namespace Pobrebox
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddControllers();
             services.AddDbContext<Context>();
+            services.AddControllers();
+            services.AddTransient<IUser, UserRepository>();
+            services.AddTransient<IDocument, DocRepository>();
+            // var builder = new SqlConnectionStringBuilder(
+            //     Configuration.GetConnectionString("connection")
+            // );
             
             services.AddSwaggerGen(c =>
             {

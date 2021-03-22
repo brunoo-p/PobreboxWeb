@@ -6,19 +6,26 @@ using Pobrebox.Repository;
 
 namespace Pobrebox.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class UserController : Controller
     {
-        private readonly UserRepository repository;
+        UserRepository repository;
+        public UserController (UserRepository _repository)
+        {
+            repository = _repository;
+        }
 
         [HttpGet]
-        public async Task<IActionResult> Login(string email, string password)
+        public User Login(string email, string password)
         {
             try{
                 var user = repository.Login(email, password);
                 if(user == null){
-                    return NotFound();
+                    return null;
                 }
-                return Ok(user);
+                Console.WriteLine("ALO", user);
+                return user;
 
             }catch(Exception ex)
             {
@@ -27,7 +34,7 @@ namespace Pobrebox.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(int id)
+        public ActionResult DeleteUser(int id)
         {
             try
             {
@@ -46,7 +53,7 @@ namespace Pobrebox.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> RegisterUser([FromBody] User user)
+        public ActionResult RegisterUser([FromBody] User user)
         {
             var newUser = repository.Register(user);
             if(!newUser)

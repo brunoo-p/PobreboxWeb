@@ -5,10 +5,14 @@ namespace Pobrebox.Repository
 {
     public class Context : DbContext
     {
-        public DbSet<User> Users { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(connectionString:"Server=localhost\\SQLEXPRESS;Database=Pobrebox;Trusted_Connection=True");
+            optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=Pobrebox;Trusted_Connection=True");
         }
+       public Context(DbContextOptions<Context> options) : base(options) {}
+
+       public DbSet<User> Users { get; set; }
+       public DbSet<Document> Documents { get; set; }
+
     }
 }

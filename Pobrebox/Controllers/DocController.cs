@@ -3,23 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Pobrebox.Interfaces;
 using Pobrebox.Model;
 using Pobrebox.Repository;
 
 namespace Pobrebox.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
-    public class DocController : Controller
+    [Route("api/[controller]")]
+    public class DocController : ControllerBase
     {
-        private readonly DocRepository repository;
+        IDocument repository;
+        public DocController(IDocument _repository)
+        {
+            repository = _repository;
+        }
 
         [HttpPost]
-        public bool AddDocument(Document doc)
+        public async Task<bool> AddDocument(Document doc)
         {
             try{
 
-                var document = repository.AddDocument(doc);
+                var newDoc = new Document(
+                    doc.Id,
+                    doc.IdUser,
+                    doc.DocName,
+                    doc.Directory,
+                    doc.Content
+                );
+                
+                
+                var document = await repository.AddDocument(newDoc);
                 if(!document){
                     return false;
                 }
@@ -33,16 +47,17 @@ namespace Pobrebox.Controllers
         }
 
         [HttpDelete]
-        public bool ExcludeDocument(int id)
+        public async Task<bool> ExcludeDocument(int id)
         {
             try{
-                var documentExcluded = repository.ExcludeDocument(id);
+                var documentExcluded = await repository.ExcludeDocument(id);
+                
                 if(!documentExcluded)
                 {
                     return false;
                 }
 
-                return true;
+                return documentExcluded;
 
             }catch(Exception ex)
             {
@@ -50,16 +65,19 @@ namespace Pobrebox.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet]
         public async Task<ActionResult<List<Document>>> GetDocumentForDirectory(int idUser, string directory)
         {
             try{
-                var documents = repository.GetDocumentForDirectory(idUser, directory);
+                var documents = await repository.GetDocumentForDirectory(idUser, directory);
+                
+                
                 if(documents.Equals(null))
                 {
                     return BadRequest(null);
                 }
-                return Ok(documents.ToList());
+                
+                return Ok(documents);
             }catch(Exception ex)
             {
                 throw ex;
