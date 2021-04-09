@@ -42,8 +42,8 @@ export default function Home() {
                 setOpenForm={setOpenForm}
 
             />
-            <SideMenu openForm={openForm}>
-                <MenuForm setOpenForm={setOpenForm}/>
+            <SideMenu openForm={openForm} >
+                <MenuForm open={openForm} setOpenForm={setOpenForm}/>
             </SideMenu>
         </>
             

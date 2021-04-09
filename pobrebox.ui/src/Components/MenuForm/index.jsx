@@ -54,7 +54,7 @@ export default function MenuForm({setOpenForm}) {
 
     }, [password]);
     //<--
-    
+
     //--> Lottie options
     const defaultOptions = {
         loop: true,
@@ -179,7 +179,7 @@ export default function MenuForm({setOpenForm}) {
                 </PasswordCaracters>
 
                 <PasswordCaracters>
-                    <p style={{color: minChar}}> <IoMdCheckmarkCircleOutline style={{marginRight:1}}/> Mínimo 8 caractéres</p>
+                    <p style={{color: minChar}}> <IoMdCheckmarkCircleOutline style={{marginRight:1}}/> Mínimo 8 caracteres</p>
                     <p style={{color: number}}> <IoMdCheckmarkCircleOutline style={{marginRight:1}}/> Um número</p>
                 </PasswordCaracters>
                 
