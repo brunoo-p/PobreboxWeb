@@ -5,9 +5,9 @@ namespace Pobrebox.Interfaces
 {
     public interface IUser
     {
-        bool Register(User user);
+        Task<bool> Register(User user);
         User Login(string email, string password);
         
-        bool ExcludeUser(int id);
+        Task<bool> ExcludeUser(int id);
     }
 }

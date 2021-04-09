@@ -7,7 +7,7 @@ namespace Pobrebox.Repository
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=Pobrebox;Trusted_Connection=True");
+            optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=pobreboxApi;Trusted_Connection=True");
         }
        public Context(DbContextOptions<Context> options) : base(options) {}
 

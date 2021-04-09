@@ -1,11 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
 using Pobrebox.Interfaces;
 using Pobrebox.Model;
 
@@ -13,26 +8,28 @@ namespace Pobrebox.Repository
 {
     public class UserRepository : IUser
     {   
-        //private readonly Context _context;
-        private SqlConnection connection = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=Pobrebox;Trusted_Connection=True");
-        string query;
-        private SqlCommand command;
+        private readonly Context _context;
 
-        public bool ExcludeUser(int id)
+        public UserRepository(Context context)
         {
-            query = "UPDATE Users SET isDeleted= 1 WHERE Id='" + id + "'";
-            command = new SqlCommand(query, connection);
-            command.CommandType = CommandType.Text;
+            _context = context;
+        }
+        
+        public async Task<bool> ExcludeUser(int id)
+        {
             try{
+                var user = _context.Users.FirstOrDefault(u =>  u.Id == id);
+                
+                if(user == null)
+                {
+                    return false;
+                }
 
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
+                user.isDeleted = true;
+                await _context.SaveChangesAsync();
+                
                 return true;
-
             }catch(Exception){
-                connection.Close();
-                command = null;
                 return false;
             }
         }
@@ -41,70 +38,41 @@ namespace Pobrebox.Repository
         {
             try{
 
-                if(string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+                var user = _context.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
+
+                if(user.isDeleted){
+                    return null;
+                }
+
+                if(user == null)
                 {
                     return null;
                 }
-
-                query = "Select * from Users where Email='"+ email +"'and Password='"+ password +"' and isDeleted=0";
-                command = new SqlCommand(query, connection);
-                var docs = new List<Document>();
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-                if(reader.Read())
-                { 
-                    int idDb = Convert.ToInt32(reader[0]);
-                    string nameDb = reader[1].ToString();
-                    string emailDb = reader[2].ToString();
-                    string passwordDb = reader[3].ToString();
-
-                    var user = new User(
-                        id: idDb,
-                        name: nameDb,
-                        email: emailDb,
-                        password: password
-                        );
-
-                    connection.Close();
-                    command = null;
-                    return user;
-
-                }else{
-                    connection.Close();
-                    command = null;
-                    return null;
-                }
-
+                user.Password = "*";
+                return user;
             }catch(Exception)
             {
-                connection.Close();
-                command = null;
                 return null;
             }
         }
 
 
-        public bool Register(User user)
+        public async Task<bool> Register(User user)
         {
             if(string.IsNullOrEmpty(user.Name) || string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.Password))
                 {
                     return false;
                 }
-
-            query = "Insert into Users (Name, Email, Password) values ('" + user.Name + "','" + user.Email + "','" + user.Password +"')";
-            command = new SqlCommand(query, connection);
-            command.CommandType = CommandType.Text;
-            connection.Open();
             try{
-                command.ExecuteNonQuery();
-                connection.Close();
-                command = null;
+                var newUser = new User(user.Name, user.Email, user.Password);    
+            
+                await _context.Users.AddAsync(newUser);
+                await _context.SaveChangesAsync();
                 return true;
-
-            }catch(Exception){
-                connection.Close();
-                command = null;
-                return false;
+            
+            }catch(Exception ex)
+            {
+                throw ex;
             }
         }
     }

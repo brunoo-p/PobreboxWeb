@@ -1,31 +1,37 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Pobrebox.Interfaces;
 using Pobrebox.Model;
-using Pobrebox.Repository;
 
 namespace Pobrebox.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class UserController : Controller
     {
-        UserRepository repository;
-        public UserController (UserRepository _repository)
+        IUser repository;
+        public UserController (IUser _repository)
         {
             repository = _repository;
         }
 
-        [HttpGet]
-        public User Login(string email, string password)
+        [HttpPost]
+        public ActionResult<User> Login(string email, string password)
         {
+            if(string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                return BadRequest("Existem campos não preenchidos.");
+            }
+
             try{
                 var user = repository.Login(email, password);
                 if(user == null){
-                    return null;
+                    return StatusCode(203, "Este usuário não existe.");
                 }
-                Console.WriteLine("ALO", user);
-                return user;
+
+                return Ok(user);
 
             }catch(Exception ex)
             {
@@ -34,11 +40,11 @@ namespace Pobrebox.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult DeleteUser(int id)
+        public async Task<ActionResult> DeleteUser(int id)
         {
             try
             {
-                var userDeleted = repository.ExcludeUser(id);
+                var userDeleted = await repository.ExcludeUser(id);
                 if(!userDeleted)
                 {
                     return NotFound();
@@ -53,15 +59,22 @@ namespace Pobrebox.Controllers
         }
 
         [HttpPost]
-        public ActionResult RegisterUser([FromBody] User user)
+        [Route("register")]
+        public async Task<ActionResult> RegisterUser(User user)
         {
-            var newUser = repository.Register(user);
-            if(!newUser)
-            {
-                return BadRequest("Usuário não Cadastrado");
-            }
+            try{
 
-            return Ok(newUser);
+                var newUser = await repository.Register(user);
+                if(!newUser)
+                {
+                    return StatusCode(203, "Usuário não pôde ser Cadastrado");
+                }
+
+                return StatusCode(201, "Usuario cadastrado com sucesso!" );
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
 
         }
         
