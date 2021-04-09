@@ -37,6 +37,7 @@ export default function MenuForm({setOpenForm}) {
     }, [password]);
     //<--
 
+    //--> UX password
     useEffect(() => {
         
         //Mínimo uma Letra Maiúscula
@@ -52,7 +53,8 @@ export default function MenuForm({setOpenForm}) {
         password.length >= 8 ? setminChar("green") : setminChar("blue");
 
     }, [password]);
-
+    //<--
+    
     //--> Lottie options
     const defaultOptions = {
         loop: true,
