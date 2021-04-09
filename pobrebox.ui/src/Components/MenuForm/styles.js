@@ -140,6 +140,21 @@ export const Form = styled.form`
     }
 `;
 
+export const PasswordCaracters = styled.div`
+    display: flex;
+    align-tems: center;
+    justify-content: space-around;
+     
+    p{
+        font-size: 12px;
+        justify-content: space-around;
+        cursor: default;
+        transition: 0.2s ease-out;
+    }
+    
+    
+`;
+
 export const Arrow = styled.div`
     cursor: pointer;
     width: 200px;

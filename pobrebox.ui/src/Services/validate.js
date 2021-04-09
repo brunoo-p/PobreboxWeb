@@ -1,34 +1,22 @@
 
 const validate = async (field, content) => {
-    let regex;
+
     console.log(field);
     switch(field){
         case "email":
-
-            //regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/gi;
-            regex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i;
-            verify(regex, content);
+            let regexEmail = new RegExp("^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$");
+            let foundEmail = regexEmail.test(content);
+            return foundEmail;
 
         break;
         
         case "password":
 
-            regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
-            verify(regex, content);
+            let regexPass = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$");
+            let foundPass = regexPass.test(content);
+            return foundPass;
 
         break;
-    }
- 
-    function verify(regex, content){
-        let found = regex.test(content);
-
-        if(found){
-            return true;
-        }
-        else{ 
-            return false;
-        }
-
     }
 }
 
