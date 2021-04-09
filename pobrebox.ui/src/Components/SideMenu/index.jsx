@@ -1,7 +1,7 @@
 import React, {useEffect, useState } from 'react'
 import { Container } from './styles';
 
-export default function SideMenu({ children }) {
+export default function SideMenu({ openForm, children }) {
     
     const [ scrollValue, setScrollValue ] = useState(0);
     const [ isActive, setIsActive ]  = useState(false);
@@ -21,6 +21,7 @@ export default function SideMenu({ children }) {
     //--> Open side form
     const setClass = [
         isActive ? 'open' : '',
+        openForm ? 'open' : '',
         scrollValue <= 300 ? 'scrollOpen' : ''
     ];
 

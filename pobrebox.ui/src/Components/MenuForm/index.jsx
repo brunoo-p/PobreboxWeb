@@ -8,7 +8,7 @@ import api from '../../Services/api';
 import { useHistory } from 'react-router-dom';
 
 
-export default function MenuForm() {
+export default function MenuForm({setOpenForm}) {
 
     const [ ToggleLogin, setToggleLogin ] = useState(false);
     const [ email, setEmail ] = useState("");
@@ -138,7 +138,7 @@ export default function MenuForm() {
                     <span> Pobrebox </span>
                 </h1>
 
-                <button className="action--close"> Close </button>
+                <button onClick={() => setOpenForm(false)} className="action--close"> Close </button>
             
             </Navigation>
 
