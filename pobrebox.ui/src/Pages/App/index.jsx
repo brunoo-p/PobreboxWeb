@@ -49,7 +49,6 @@ export default function Application() {
     //<--
 
     //--> Request files by directory
-    
     useEffect(() => {
         (async function getDocs(){
             if(search){
@@ -68,8 +67,8 @@ export default function Application() {
     }, [search, documents, directory]);
     //<--
 
+    
     //--> Checking and filtering request response
-
     const nenhumArquivo = 203;
     const falhaRequisicao = [ 405, 500 ];
 
@@ -225,8 +224,9 @@ export default function Application() {
             <Apresentation/>
 
             <BodyApp
-                setDirector={setDirectory} directory={directory}
-                items={items} setItems={setItems}
+                setDirector={setDirectory}
+                directory={directory}
+                items={items}
             />
             
             {!showModal && <div> <input id="addDir" className={className} type="text" placeholder="Nome do diretório" onKeyDown={handleNameDir}/>

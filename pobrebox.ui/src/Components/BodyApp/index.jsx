@@ -16,7 +16,6 @@ export default function BodyApp({items}) {
     };
 
     const [uploadFile, setUploadFile ] = useState(initialState);
-    const [activeSubmit, setActiveSubmit ] = useState(false);
     const [ nameFile, setNameFile ] = useState("");
 
     //--> Set File Input
