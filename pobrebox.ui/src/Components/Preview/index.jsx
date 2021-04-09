@@ -25,7 +25,7 @@ export default function Preview({initialState, file, setFile, items, setNameFile
         isImage = false;
         let mimeType = file.mimeType.toLowerCase();
 
-        let allowMimeTypes = ".png, .jgp, .jpeg, .gif, .bmp, .svg, .ico";
+        let allowMimeTypes = ".png, .jpg, .jpeg, .gif, .bmp, .svg, .ico";
         
         isImage = allowMimeTypes.includes(mimeType);
 

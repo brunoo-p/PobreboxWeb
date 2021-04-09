@@ -32,9 +32,6 @@ export default function BodyApp({items}) {
             let mimeType = name.substring(name.lastIndexOf("."));
             
         
-            if(files.size > 0){
-                setActiveSubmit(true);
-            }
             let userLogged = JSON.parse(localStorage.getItem('user'));
 
             const uploadedFiles = {
@@ -46,6 +43,7 @@ export default function BodyApp({items}) {
                 size: filesize(files.size),
                 preview: URL.createObjectURL(files)
             };
+            
             console.log(uploadedFiles);
             
             setUploadFile(uploadedFiles);

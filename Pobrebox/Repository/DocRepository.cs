@@ -71,7 +71,6 @@ namespace Pobrebox.Repository
                     doc.DocName,
                     doc.Directory,
                     doc.Content
-                    //Convert.ToBase64String(doc.Content)
                 ))
                 .ToListAsync();
                 
