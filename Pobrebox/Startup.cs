@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
@@ -31,12 +32,23 @@ namespace Pobrebox
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<Context>();
+
             services.AddControllers();
-            services.AddTransient<IUser, UserRepository>();
-            services.AddTransient<IDocument, DocRepository>();
-            // var builder = new SqlConnectionStringBuilder(
-            //     Configuration.GetConnectionString("connection")
-            // );
+            services.Configure<FormOptions>(x =>
+            {
+                x.MultipartBodyLengthLimit = int.MaxValue;
+            });
+            
+            services.AddCors(options => {
+                options.AddPolicy("CorsPolicy", builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                );
+            });
+
+            services.AddScoped<IUser, UserRepository>();
+            services.AddScoped<IDocument, DocRepository>();
             
             services.AddSwaggerGen(c =>
             {
@@ -59,6 +71,8 @@ namespace Pobrebox
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors("CorsPolicy");
 
             app.UseEndpoints(endpoints =>
             {
