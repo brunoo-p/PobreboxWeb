@@ -60,6 +60,7 @@ export const Aside = styled.aside`
     .requestChange{
         width: 70%;
         height: 50%;
+        transform: scale(1);
         max-width: 450px;  
         max-height: 300px;
         align-items: center;
@@ -67,6 +68,17 @@ export const Aside = styled.aside`
 
         border-radius: 15px;
         border: 3px solid rgba(145,145,145, 0.1);
+
+        animation 0.8s show ;
+
+        @keyframes show {
+            from{
+                transform:scale(0);
+            }
+            to{
+                transform: scale(1);
+            }
+        }
 
         span{
             width: 80%;

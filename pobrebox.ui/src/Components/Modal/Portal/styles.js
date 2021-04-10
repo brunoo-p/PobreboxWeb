@@ -19,12 +19,24 @@ export const Content = styled.div`
     background: #fff;
     transform: translateX(0);
     transition: 0.5s ease-out;
-     
+    
     &.close{
         width: 60%;
         height: 60%;
         transition: 0.35s ease-in;
         transform: translateX(170%);
+    }
+
+    transform: scale(1);
+    animation 0.7s show ;
+
+    @keyframes show {
+        from{
+            transform:scale(0);
+        }
+        to{
+            transform: scale(1);
+        }
     }
     
 `;
