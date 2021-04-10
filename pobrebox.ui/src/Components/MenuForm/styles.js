@@ -94,6 +94,16 @@ export const Form = styled.form`
             border: 1px solid ${({ theme }) => theme.colors.blue};
         }
     }
+
+    .forgotPass{
+        margin-top: 8px;
+        font-size: 12px;
+        cursor: pointer;
+        :hover{
+            opacity: 0.8;
+        }
+    }
+
     button{
         margin-top: 18px;
         padding: 13px 18px;

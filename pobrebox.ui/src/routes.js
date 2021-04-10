@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 //import { useUserForm } from './Context/SetUser';
-import { Home, Application } from './Pages';
+import { Home, Application, ChangePass } from './Pages';
 
 export default function Routes() {
 
@@ -25,6 +25,7 @@ export default function Routes() {
             <Switch>
                 <Route exact path='/' component={Home}/>
                 <PrivateRoute exact path='/app' component={Application}/>
+                <Route exact path='/setting/changepass' component={ChangePass}/>
             </Switch>
         </BrowserRouter> 
     )

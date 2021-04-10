@@ -205,7 +205,9 @@ export default function MenuForm({setOpenForm}) {
 
                 <input type="email" onChange={(event) => setEmail(event.target.value)} value={email} placeholder="Digite seu e-mail" required/>
                 <input type="password" onChange={(event) => setPassword(event.target.value)} value={password} placeholder="Agora sua senha" required/>
-
+                
+                <p className="forgotPass">Esqueci a Senha</p>
+                
                 <button onClick={onLogin}> Login </button>
                 <p>
                     <span className="terms"> Copyright © Bruno Paulino </span>
