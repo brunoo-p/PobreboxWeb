@@ -26,7 +26,7 @@ export default function Application() {
     const [search, setSearch ] = useState(false);
     const [login, setLogin ] = useState(true);
     const [scrollX, setScrollX ] = useState(21);
-    const [scrollDir, setScrollDir ] = useState(0);
+    const [scrollDir, setScrollDir ] = useState(21);
     const [addDirectory, setAddDirectory ] = useState(false);
 
     //Default Directories
@@ -149,7 +149,6 @@ export default function Application() {
 
         if(event.keyCode === 13){
             setItems([...items, {id: 3, text: event.target.value}]);
-            setScrollDir(scrollDir + (-50));
             setAddDirectory(false);
 
             document.getElementById('addDir').value= null
@@ -159,15 +158,19 @@ export default function Application() {
 
     //--> Slide arrow for Carousel
     const handleMoveCardsToLeft = (type) => {
-        let x = scrollX + Math.round(window.innerWidth / 2);
+        
         if(type === "files"){
+            let x = scrollX + Math.round(window.innerWidth / 2);
             if(x > 21) { x = 21 };
 
             setScrollX(x);
         }
         else if(type === "dir"){
-            if(x > 21) { x = 21 };
+            let x = scrollDir + Math.round(window.innerWidth / 2);
+            if(x > 0) { x = 0 };
+
             setScrollDir(x);
+            console.log(scrollDir);
         }
     }
     const handleMoveCardsToRight = (type) => {
@@ -185,7 +188,7 @@ export default function Application() {
         }else if(type === "dir"){
             let x = scrollDir - Math.round(window.innerWidth / 2);
 
-            let listWidth = items.length * 250;
+            let listWidth = items.length * 400;
             
             if((400 - listWidth) > x) {
                 x = (window.innerWidth - listWidth) - 400;
@@ -252,7 +255,7 @@ export default function Application() {
                             </FileDB>
                         ))
                         
-                            :    documents.docName != undefined  ? <> <h2>{documents.docName}</h2> <Lottie options={setLottie(true, clipFile)} width={250} height={50}/> </>
+                            :    documents.docName !== undefined  ? <> <h2>{documents.docName}</h2> <Lottie options={setLottie(true, clipFile)} width={250} height={50}/> </>
                             
                             :   <Lottie 
                                     options={setLottie(true, loadingPacMan)}
@@ -275,7 +278,7 @@ export default function Application() {
                 <DirectoryCard openModal={openModal} items={items} setDirectory={setDirectory}>
 
                         
-                    <div className="contentDirectory" style={{width: items.length * 400, marginLeft: scrollDir}}>
+                    <div className="contentDirectory" style={{width: items.length * 350, marginLeft: scrollDir}}>
                     
                     { items && items.map((item, index) => {
                         

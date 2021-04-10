@@ -3,15 +3,18 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
     display: flex;
-    width: 100%;
-    margin-left: -10px;
-    justify-content: space-around;
+    width: 95%;
+    margin: 0;
+    justify-content: start;
     overflow: hidden;
+    max-width: 1440px;
+    box-sizing: border-box;
 
     .contentDirectory{
         display: flex;
-        min-width: 90%;
-        overflow: hidden;
+        flex: none;
+        margin: 0;
+        overflow-x: hidden;
         height: 100%;
         padding: 5px;
         justify-content: space-around;

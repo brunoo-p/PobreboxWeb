@@ -7,6 +7,7 @@ export const Container = styled.div`
     opacity: 0.99;
     width: 100%;
     height: auto;
+    max-width: 1440px;
 `;
 
 export const Content = styled.section`

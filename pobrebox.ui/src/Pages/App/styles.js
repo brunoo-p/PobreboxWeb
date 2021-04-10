@@ -7,14 +7,14 @@ import fundo from '../../Assets/fundo.png';
 
 export const Aside = styled.div`
     width: 100%;
+    max-width: 1440px;
     height: 100vh;
-    //background: ${({ theme }) => theme.colors.primaryColor};
     background: url(${fundo});
     background-repeat: no-repeat;
     background-size: cover;
     font-family: ${({ theme }) => theme.font.fontFamily};
     overflow: hidden;
-
+    
     .inputDirectory{
         position: absolute;  
         display: flex;
@@ -67,6 +67,7 @@ export const Padlock = styled.div`
 `;
 export const Wrapper = styled.div`
     display: flex;
+    width: 90vw;
     width: 89.4%;
     margin: 1% 5%;
     height: 140px;
@@ -294,7 +295,8 @@ export const Content = styled.div`
     height: 80px;
     transform: scale(0.95);
     transition: 0.2s ease-in;
-    margin: 20px;
+    margin: 0px;
+    perspective: 1200px;
     
     padding: 20px;
     background: #fff;

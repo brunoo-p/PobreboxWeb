@@ -10,6 +10,7 @@ export const Container = styled.div`
     
     background: ${({ theme }) => theme.colors.tertiaryColor};
     opacity: 0.95;
+    max-width: 1440px;
 `;
 
 export const Content = styled.div`
