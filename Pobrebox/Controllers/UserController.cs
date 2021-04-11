@@ -80,22 +80,36 @@ namespace Pobrebox.Controllers
 
         [HttpGet]
         [Route("settingpass/{email}")]
-        public ActionResult ConfirmUserForchangePass(string email)
+        public ActionResult<User> ConfirmUserForchangePass(string email)
         {
             try{
                 var user = repository.ConfirmUserForchangePass(email);
                 
-                if(!user){
+                if(user == null){
                     return StatusCode(203, "Usuário não existe");
                 }
-                
-                return StatusCode(200, "Usuário confirmado");
+                user.Password = "*";
+                return StatusCode(200, user);
             
             }catch(Exception ex)
             {
                 throw ex;
             }
         }
-        
+
+        [HttpPost]
+        [Route("changePass")]
+        public async Task<ActionResult<User>> ChangePassword(int id, string newPass)
+        {
+            try{
+                var user = await repository.ChangePassword(id, newPass);
+
+                return user;
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
+
+        }        
     }
 }

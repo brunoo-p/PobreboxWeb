@@ -15,14 +15,38 @@ namespace Pobrebox.Repository
             _context = context;
         }
 
-        public bool ConfirmUserForchangePass(string email)
+        public async Task<User> ChangePassword(int id, string newPass)
         {
-            var user = _context.Users.FirstOrDefault(u => u.Email == email);
-            if(user == null){
-                return false;
+            try{
+                var user = _context.Users.FirstOrDefault(u => u.Id == id);
+                user.Password = newPass;
+
+                await _context.SaveChangesAsync();
+                return user;
+
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public User ConfirmUserForchangePass(string email)
+        {
+            try{
+                var user = _context.Users.FirstOrDefault(u => u.Email == email);
+                /*
+                    Function for generate random code
+                */
+                /*
+                    Function for send code to user e-mail
+                */
+                return user;
+
+            }catch(Exception){
+                throw;
             }
             
-            return true;
         }
 
         public async Task<bool> ExcludeUser(int id)
@@ -66,13 +90,13 @@ namespace Pobrebox.Repository
             }
         }
 
-
         public async Task<bool> Register(User user)
         {
             if(string.IsNullOrEmpty(user.Name) || string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.Password))
                 {
                     return false;
                 }
+
             try{
                 var newUser = new User(user.Name, user.Email, user.Password);    
             
@@ -85,5 +109,6 @@ namespace Pobrebox.Repository
                 throw ex;
             }
         }
+
     }
 }

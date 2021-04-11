@@ -28,7 +28,6 @@ export const Content = styled.div`
     background-repeat: no-repeat;
     opacity: 0.9;
     
-    
     .backHome{
         display: flex;
         width: 150px;

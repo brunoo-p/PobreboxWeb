@@ -124,14 +124,6 @@ export default function MenuForm({setOpenForm}) {
 
         }else{
 
-            const data = {
-                name,
-                email,
-                password
-            };
-
-            console.log('register');
-            console.log(data);
             const response = await api.post("/user/register?", {name, email, password});
             console.log("response", response);
 

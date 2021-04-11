@@ -12,10 +12,13 @@ export default function ChangePass() {
     const [borderInput, setBorderInput ] = useState(null);
     const [email, setEmail ] = useState("");
     const [code, setCode ] = useState("");
+    const [user, setUser ] = useState(null);
     const [tryConfirm, setTryConfirm ] = useState(true);
     const [emailSended, setEmailSended ] = useState(false);
 
     let history = useHistory();
+
+    //--> Input border color
     useEffect(() => {
 
         if(newPass.length >= 1){
@@ -28,9 +31,10 @@ export default function ChangePass() {
         }
 
     }, [confirmNewPass]);
-    
+    //<--
 
 
+    //--> Set const with input values
     const handleEmailToConfirm = ({target}) => {
         setEmail(target.value);
 
@@ -38,30 +42,33 @@ export default function ChangePass() {
     const handleCodeToConfirm = ({target}) => {
         setCode(target.value);
     }
+    //<--
 
+
+    //--> Find User and Send Code To Confirm
     const submitToConfirm = async () => {
         if(!emailSended){
             
-            const isValid = validate("email", email);
+            const isValid = await validate("email", email);
+
             if(isValid){
                 const response = await api.get(`/user/settingpass/${email}`);
                 console.log(response);
 
                 if(response.status == 200){
+                    setUser(response.data);
                     document.querySelector("#inputsetting").value = "";
-                    console.log(response);
                     setEmailSended(true);
                 }
                 else{
                     alert("Algo deu errado. Iremos analisar as configurações da sua conta");
                     history.goBack();
                 }
+            }else{
+                alert("Você digitou algo errado no seu e-mail.");
             }
             
         }else{
-            
-            console.log("email", email);
-            console.log("code", code);
 
             let codeFake = "AK3S6";
             if(code === codeFake){
@@ -75,6 +82,34 @@ export default function ChangePass() {
             }
         }
     }
+    //<--
+
+    const handleSubmitChange = async (event) => {
+        event.preventDefault();
+        
+        if(user !== null){
+            let id = user.id;
+
+            try{
+                const isValid = await validate("password", newPass);
+
+                if(isValid){
+                    const response = await api.post(`/user/changePass?id=${id}&newPass=${newPass}`);
+                    alert("Senha Alterada com Sucesso!");
+                    document.querySelector("#newPass").value="";
+                    document.querySelector("#confirmnNewPass").value="";
+                    history.replace("/");
+
+                }else{
+                    alert("A nova senha precisa conter: Letras maiúsculas, Letras minúsculas, Mínimo 1 número e 8 Caracteres.");
+                }
+            
+            }catch(erro){
+                console.log(erro);
+            }
+        }
+    }
+
 
     let backgroundColor = emailSended ? "rgba(0,0,0,.5)" : "rgba(245,245,245,0.95)";
     let className = borderInput === null? '' : borderInput ? 'right' : 'wrong';
@@ -119,9 +154,9 @@ export default function ChangePass() {
 
                         <Form>
                             <h2>{email}</h2>
-                            <input className="password" type="password" placeholder="Digite sua nova senha" onChange={(event) => setNewPass(event.target.value)}/>
-                            <input className="confirmPass" type="password" placeholder="Confirme a senha" className= {className} onChange={(event) => setConfirmNewPass(event.target.value)}/>
-                            <input className="btnSubmit" type="submit" value="Mudar a Senha"/>
+                            <input className="password" type="password" placeholder="Digite sua nova senha" onChange={(event) => setNewPass(event.target.value)} id="newPass"/>
+                            <input className="confirmPass" type="password" placeholder="Confirme a senha" className= {className} onChange={(event) => setConfirmNewPass(event.target.value)} id="confirmnNewPass"/>
+                            <input className="btnSubmit" type="submit" value="Mudar a Senha" onClick={handleSubmitChange}/>
                         </Form>
                     </>
                     }
