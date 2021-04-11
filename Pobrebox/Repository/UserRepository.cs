@@ -14,7 +14,17 @@ namespace Pobrebox.Repository
         {
             _context = context;
         }
-        
+
+        public bool ConfirmUserForchangePass(string email)
+        {
+            var user = _context.Users.FirstOrDefault(u => u.Email == email);
+            if(user == null){
+                return false;
+            }
+            
+            return true;
+        }
+
         public async Task<bool> ExcludeUser(int id)
         {
             try{

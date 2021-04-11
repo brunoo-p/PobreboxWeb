@@ -6,6 +6,7 @@ export const Container = styled.div`
     width: 100%;
     height: 100vh;
     background: rgba(30,45,59,.9);
+    color: ${({ theme }) => theme.font.color};
     justify-content: center;
     align-items: center;
     font-family: ${({theme}) => theme.font.fontFamily};
@@ -18,20 +19,44 @@ export const Content = styled.div`
     border-radius: 10px;
     width: 90vw;
     height: 90vh;
-    justify-content: space-around;
     align-items: center;
+    flex-direction: column;
 
     background: url(${fundo});
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     opacity: 0.9;
+    
+    
+    .backHome{
+        display: flex;
+        width: 150px;
+        position: absolute;
+        margin-top: 40px;
+        background: none;
+        border: none;
+        
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+
+        :hover{
+            color: ${({ theme }) => theme.colors.primaryColor};
+        }
+        :focus{
+            outline: none;
+
+        }
+
+    }
 
     section{
         display: flex;
         align-items: center;
         flex-direction: column;
         width: 75%;
+        max-height: 70%;
 
         p{
             display: flex;
@@ -81,14 +106,22 @@ export const Aside = styled.aside`
         }
 
         span{
+            display: flex;
             width: 80%;
+            align-items:center;
+            justify-content: center;
             font-size: 18px;
         }
         input{
+            display: flex;
             padding: 10px;
+            
             font-size: 16px;
+            font-weight: 700;
+            
             border-radius: 10px;
             border: 1px solid ${({ theme }) => theme.colors.borderColor};
+            
             transition: 0.4s ease-out;
             
             :focus{
@@ -96,6 +129,14 @@ export const Aside = styled.aside`
                 border: 1px solid ${({ theme }) => theme.colors.blue};
                 background: rgba(40,140,200, 0.2);
                 outline: none;
+            }
+        }
+
+        .btnSubmit{
+            cursor: pointer;
+            :hover{
+                background: rgba(40,140,200, 0.4);
+                border: 1px solid ${({ theme }) => theme.colors.blue};
             }
         }
     }

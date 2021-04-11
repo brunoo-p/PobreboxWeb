@@ -77,6 +77,25 @@ namespace Pobrebox.Controllers
             }
 
         }
+
+        [HttpGet]
+        [Route("settingpass/{email}")]
+        public ActionResult ConfirmUserForchangePass(string email)
+        {
+            try{
+                var user = repository.ConfirmUserForchangePass(email);
+                
+                if(!user){
+                    return StatusCode(203, "Usuário não existe");
+                }
+                
+                return StatusCode(200, "Usuário confirmado");
+            
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
         
     }
 }
