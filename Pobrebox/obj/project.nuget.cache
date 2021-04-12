@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qNVyhH4UNw85ywEKwsLtkXW086w7JJRZtKh0/g+evXd0wgKMLKolXY4RfunYfRJqInnpo4gXPxhnnyCR2Dqc0w==",
+  "dgSpecHash": "liurhRfmKcRVxCwfVRrsw0bF4iGpQJtQgZLDJ1yPKTAmcYd5bzSOX0QlL3RfDyqpClorJ0zaRoRsEMJ4wZpm1A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\bruno\\OneDrive\\Área de Trabalho\\Pobrebox\\Pobrebox\\Pobrebox.csproj",
+  "projectFilePath": "C:\\Users\\bruno\\OneDrive\\Área de Trabalho\\Pobrebox\\pobrebox\\Pobrebox.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bruno\\.nuget\\packages\\castle.core\\4.4.0\\castle.core.4.4.0.nupkg.sha512",
     "C:\\Users\\bruno\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

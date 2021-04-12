@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bruno\\OneDrive\\Área de Trabalho\\Pobrebox\\Pobrebox\\Pobrebox.csproj": {}
+    "C:\\Users\\bruno\\OneDrive\\Área de Trabalho\\Pobrebox\\pobrebox\\Pobrebox.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bruno\\OneDrive\\Área de Trabalho\\Pobrebox\\Pobrebox\\Pobrebox.csproj": {
+    "C:\\Users\\bruno\\OneDrive\\Área de Trabalho\\Pobrebox\\pobrebox\\Pobrebox.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bruno\\OneDrive\\Área de Trabalho\\Pobrebox\\Pobrebox\\Pobrebox.csproj",
+        "projectUniqueName": "C:\\Users\\bruno\\OneDrive\\Área de Trabalho\\Pobrebox\\pobrebox\\Pobrebox.csproj",
         "projectName": "Pobrebox",
-        "projectPath": "C:\\Users\\bruno\\OneDrive\\Área de Trabalho\\Pobrebox\\Pobrebox\\Pobrebox.csproj",
+        "projectPath": "C:\\Users\\bruno\\OneDrive\\Área de Trabalho\\Pobrebox\\pobrebox\\Pobrebox.csproj",
         "packagesPath": "C:\\Users\\bruno\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bruno\\OneDrive\\Área de Trabalho\\Pobrebox\\Pobrebox\\obj\\",
+        "outputPath": "C:\\Users\\bruno\\OneDrive\\Área de Trabalho\\Pobrebox\\pobrebox\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\bruno\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -4,7 +4,7 @@ const validate = async (field, content) => {
     console.log(field);
     switch(field){
         case "email":
-            let regexEmail = new RegExp("^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$");
+            let regexEmail = new RegExp("^[A-Za-z0-9](([_\\.\\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\\.\\-]?[a-zA-Z0-9]+)*)\\.([A-Za-z]{2,})$");
             let foundEmail = regexEmail.test(content);
             return foundEmail;
 
@@ -12,8 +12,10 @@ const validate = async (field, content) => {
         
         case "password":
 
-            let regexPass = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$");
+            let regexPass = new RegExp("^(?=\\S*[a-z])(?=\\S*[A-Z])(?=\\S*\\d)\\S{8,}$"); 
             let foundPass = regexPass.test(content);
+            console.log(content);
+            console.log(foundPass);
             return foundPass;
 
         break;

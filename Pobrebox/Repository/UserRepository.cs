@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Pobrebox.Interfaces;
 using Pobrebox.Model;
+using Pobrebox.Services.SendEmail;
 
 namespace Pobrebox.Repository
 {
@@ -38,10 +39,11 @@ namespace Pobrebox.Repository
                 /*
                     Function for generate random code
                 */
-                /*
-                    Function for send code to user e-mail
-                */
+                
+                var sended = SettingEmail.emailSended("brun.op@hotmail.com");
+                
                 return user;
+
 
             }catch(Exception){
                 throw;
