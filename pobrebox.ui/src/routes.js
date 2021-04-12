@@ -19,13 +19,28 @@ export default function Routes() {
             />
         )
     }
+    
+    const ChangePassRoute = ({component: Component, ...rest}) => {
+        return(
+            <Route
+                {...rest} render={props => (
+                    localStorage.getItem('changePass')
+                                    
+                    
+                    ? <Component {...props} />
+                    
+                    : <Redirect to="/" /> 
+                )}
+            />
+        )
+    }
 
     return (
         <BrowserRouter>
             <Switch>
                 <Route exact path='/' component={Home}/>
                 <PrivateRoute exact path='/app' component={Application}/>
-                <Route exact path='/setting/changepass' component={ChangePass}/>
+                <ChangePassRoute exact path='/setting/changepass' component={ChangePass}/>
             </Switch>
         </BrowserRouter> 
     )

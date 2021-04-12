@@ -29,6 +29,7 @@ export const Content = styled.div`
     opacity: 0.9;
     
     .backHome{
+        z-index: 1;
         display: flex;
         width: 150px;
         position: absolute;
@@ -54,8 +55,11 @@ export const Content = styled.div`
         display: flex;
         align-items: center;
         flex-direction: column;
-        width: 75%;
+        width: 50%;
         max-height: 70%;
+        background: rgba(55,34,17,0.1);
+        padding: 15px;
+        border-radius: 10px;
 
         p{
             display: flex;
@@ -68,30 +72,44 @@ export const Content = styled.div`
             margin-bottom: 10px;
             color: ${({theme}) => theme.colors.primaryColor};
         }
-        
     }
 `;
 
 export const Aside = styled.aside`
     display: flex;
-    flex-direction: column;
     width: 50%;
     height: 90%;
+    
+    flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    
     border-radius: 10px;
+    transform: scale(1);
+    animation 0.8s show ;
+
+        @keyframes show {
+            from{
+                transform:scale(0);
+            }
+            to{
+                transform: scale(1);
+            }
+        }
 
     .requestChange{
         width: 70%;
         height: 50%;
-        transform: scale(1);
         max-width: 450px;  
         max-height: 300px;
+        
         align-items: center;
         justify-content: space-evenly;
-
+        
         border-radius: 15px;
         border: 3px solid rgba(145,145,145, 0.1);
+        
+        transform: scale(1);
 
         animation 0.8s show ;
 
@@ -109,6 +127,7 @@ export const Aside = styled.aside`
             width: 80%;
             align-items:center;
             justify-content: center;
+            
             font-size: 18px;
         }
         input{

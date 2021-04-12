@@ -57,7 +57,8 @@ export default function ChangePass() {
                 let code = await generateCode();
                 console.log(code);
                 setAleatoryCode(code);
-
+                
+                document.querySelector("#btnSubmit").value = "Enviando ...";
                 const response = await api.get(`/user/settingpass/${email}/${code}`);
                 console.log(response);
 
@@ -134,7 +135,7 @@ export default function ChangePass() {
     return (
         <Container>
             <Content>
-                <input className="backHome" type="button" value="Voltar para a Home" onClick={() => history.goBack()}/>
+                { tryConfirm && <input className="backHome" type="button" value="Voltar para a Home" onClick={() => history.replace("/")}/> }
                 <Aside>
 
                     {tryConfirm ?
@@ -145,15 +146,15 @@ export default function ChangePass() {
                             {!emailSended ?
                                 <>
                                     <span>Informe seu e-mail de cadastro.</span>
-                                    <input type="text"  id="inputsetting" onChange={handleEmailToConfirm}/>
+                                    <input type="text"  id="inputsetting" onChange={handleEmailToConfirm} placeholder="E-mail"/>
                                 </>
                             :
                                 <>
                                     <span style={{color: "white"}}>Confirme o código recebido.</span>
-                                    <input type="text"  id="inputsetting" onChange={handleCodeToConfirm}/>
+                                    <input type="text"  id="inputsetting" onChange={handleCodeToConfirm} placeholder="6-Digit Code"/>
                                 </>
                             }
-                            <input className="btnSubmit" type="submit" value="Enviar" onClick={submitToConfirm}/>
+                            <input className="btnSubmit" type="submit" value="Enviar" onClick={submitToConfirm} id="btnSubmit"/>
                         </section>
                     </>
                     
@@ -173,7 +174,7 @@ export default function ChangePass() {
                             <h2>{email}</h2>
                             <input className="password" type="password" placeholder="Digite sua nova senha" onChange={(event) => setNewPass(event.target.value)} id="newPass"/>
                             <input className="confirmPass" type="password" placeholder="Confirme a senha" className= {className} onChange={(event) => setConfirmNewPass(event.target.value)} id="confirmnNewPass"/>
-                            <input className="btnSubmit" type="submit" value="Mudar a Senha" onClick={handleSubmitChange} />
+                            <input className="btnSubmit" type="submit" value="Mudar a Senha" onClick={handleSubmitChange} style={{backgroundColor: "rgba(23,123,223,0.6"}}/>
                         </Form>
                     </>
                     }

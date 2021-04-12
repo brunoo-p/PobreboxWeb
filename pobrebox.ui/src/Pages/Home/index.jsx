@@ -1,8 +1,15 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Section, SideMenu, MenuForm } from '../../Components';
 import data from '../../data';
 
 export default function Home() {
+
+    //--> Remove access to Change Password Route
+    useEffect(() => {
+        localStorage.removeItem("changePass");
+    
+    },[]);
+    //<--
 
     const [ openForm, setOpenForm ] = useState(false);
     return (
