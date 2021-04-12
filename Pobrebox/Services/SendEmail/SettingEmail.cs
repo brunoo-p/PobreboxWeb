@@ -1,6 +1,5 @@
 using System;
 using System.Net.Mail;
-using System.Threading.Tasks;
 using SendEmail.EmailBody;
 
 namespace Pobrebox.Services.SendEmail
@@ -20,7 +19,7 @@ namespace Pobrebox.Services.SendEmail
                 SmtpClient mailClient = new SmtpClient("stmp.gmail.com", 587)
                 {
                     EnableSsl = true,
-                    Credentials = new System.Net.NetworkCredential("o.paulino.brun@gmail.com", "Ba7iman23")
+                    Credentials = new System.Net.NetworkCredential("o.paulino.brun@gmail.com", "senha")
                 };
 
                 mailClient.Send(email);

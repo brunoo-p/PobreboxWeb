@@ -39,10 +39,17 @@ namespace Pobrebox.Repository
                 /*
                     Function for generate random code
                 */
+                if(user != null){
+                    var sended = SettingEmail.emailSended("brun.op@hotmail.com");
+                    
+                    if(sended){
+                        return user;
+
+                    }
+                }
+                return null;
                 
-                var sended = SettingEmail.emailSended("brun.op@hotmail.com");
                 
-                return user;
 
 
             }catch(Exception){
