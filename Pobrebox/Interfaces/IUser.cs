@@ -8,7 +8,7 @@ namespace Pobrebox.Interfaces
         Task<bool> Register(User user);
         User Login(string email, string password);        
         Task<bool> ExcludeUser(int id);
-        User ConfirmUserForchangePass(string email);
+        User ConfirmUserForchangePass(string email, string code);
         Task<User> ChangePassword(int id, string newPassword);
     }
 }

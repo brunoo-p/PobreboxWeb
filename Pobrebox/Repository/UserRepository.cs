@@ -32,25 +32,14 @@ namespace Pobrebox.Repository
 
         }
 
-        public User ConfirmUserForchangePass(string email)
+        public User ConfirmUserForchangePass(string email, string code)
         {
             try{
                 var user = _context.Users.FirstOrDefault(u => u.Email == email);
-                /*
-                    Function for generate random code
-                */
-                if(user != null){
-                    var sended = SettingEmail.emailSended("brun.op@hotmail.com");
-                    
-                    if(sended){
-                        return user;
-
-                    }
-                }
-                return null;
                 
+                SettingEmail.emailSended(email, code);
                 
-
+                return user;
 
             }catch(Exception){
                 throw;

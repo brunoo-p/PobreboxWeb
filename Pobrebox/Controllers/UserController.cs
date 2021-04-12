@@ -79,11 +79,11 @@ namespace Pobrebox.Controllers
         }
 
         [HttpGet]
-        [Route("settingpass/{email}")]
-        public ActionResult<User> ConfirmUserForchangePass(string email)
+        [Route("settingpass/{email}/{code}")]
+        public ActionResult<User> ConfirmUserForchangePass(string email, string code)
         {
             try{
-                var user = repository.ConfirmUserForchangePass(email);
+                var user = repository.ConfirmUserForchangePass(email, code);
                 
                 if(user == null){
                     return StatusCode(203, "Usuário não existe");

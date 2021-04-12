@@ -12,6 +12,7 @@ export default function ChangePass() {
     const [borderInput, setBorderInput ] = useState(null);
     const [email, setEmail ] = useState("");
     const [code, setCode ] = useState("");
+    const [aleatoryCode, setAleatoryCode ] = useState("");
     const [user, setUser ] = useState(null);
     const [tryConfirm, setTryConfirm ] = useState(true);
     const [emailSended, setEmailSended ] = useState(false);
@@ -52,7 +53,12 @@ export default function ChangePass() {
             const isValid = await validate("email", email);
 
             if(isValid){
-                const response = await api.get(`/user/settingpass/${email}`);
+
+                let code = await generateCode();
+                console.log(code);
+                setAleatoryCode(code);
+
+                const response = await api.get(`/user/settingpass/${email}/${code}`);
                 console.log(response);
 
                 if(response.status == 200){
@@ -70,16 +76,27 @@ export default function ChangePass() {
             
         }else{
 
-            let codeFake = "AK3S6";
-            if(code === codeFake){
+            if(code === aleatoryCode){
 
                 setTryConfirm(false);
             }else{
 
                 alert("Código incorreto.");
                 history.push("/");
-
             }
+        }
+        
+        async function generateCode(){
+
+            const allowCode = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            let code = "";
+            
+            
+            for( let i = 0; i < 6; i++ ){
+               let current = Math.floor(Math.random() * 26);
+               code += allowCode[current];
+            }
+            return code;
         }
     }
     //<--
@@ -156,7 +173,7 @@ export default function ChangePass() {
                             <h2>{email}</h2>
                             <input className="password" type="password" placeholder="Digite sua nova senha" onChange={(event) => setNewPass(event.target.value)} id="newPass"/>
                             <input className="confirmPass" type="password" placeholder="Confirme a senha" className= {className} onChange={(event) => setConfirmNewPass(event.target.value)} id="confirmnNewPass"/>
-                            <input className="btnSubmit" type="submit" value="Mudar a Senha" onClick={handleSubmitChange}/>
+                            <input className="btnSubmit" type="submit" value="Mudar a Senha" onClick={handleSubmitChange} />
                         </Form>
                     </>
                     }

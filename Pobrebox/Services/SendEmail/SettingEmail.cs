@@ -6,9 +6,10 @@ namespace Pobrebox.Services.SendEmail
 {
     public class SettingEmail
     {
-        public static bool emailSended(string emailUser)
+        public static void emailSended(string emailUser, string code)
         {
-            var body = Body.Message();
+
+            var body = Body.Message(code);
 
             AlternateView htmlView = AlternateView.CreateAlternateViewFromString(body, null, "text/html");
 
@@ -16,19 +17,17 @@ namespace Pobrebox.Services.SendEmail
 
             try{
 
-                SmtpClient mailClient = new SmtpClient("stmp.gmail.com", 587)
+                SmtpClient mailClient = new SmtpClient("smtp.gmail.com", 587)
                 {
                     EnableSsl = true,
-                    Credentials = new System.Net.NetworkCredential("o.paulino.brun@gmail.com", "senha")
+                    Credentials = new System.Net.NetworkCredential("o.paulino.brun@gmail.com", "*senha*")
                 };
 
                 mailClient.Send(email);
-                
-                return true;
 
-            }catch(Exception)
+            }catch(Exception ex)
             {
-                return false;
+                throw ex;
             }
         }
         public static MailMessage Building(AlternateView htmlView, string emailUser)
@@ -37,7 +36,7 @@ namespace Pobrebox.Services.SendEmail
             email.From = new MailAddress("o.paulino.brun@gmail.com", "Pobrebox");
             email.To.Add(new MailAddress(emailUser));
             
-            email.Subject = "Verificação";
+            email.Subject = "[Pobrebox] Por favor, confirme seu e-mail";
             
             email.IsBodyHtml = true;
             email.AlternateViews.Add(htmlView);
