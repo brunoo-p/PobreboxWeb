@@ -62,7 +62,7 @@ export default function ChangePass() {
                 const response = await api.get(`/user/settingpass/${email}/${code}`);
                 console.log(response);
 
-                if(response.status == 200){
+                if(response.status === 200){
                     setUser(response.data);
                     document.querySelector("#inputsetting").value = "";
                     setEmailSended(true);
@@ -112,10 +112,12 @@ export default function ChangePass() {
                 const isValid = await validate("password", newPass);
 
                 if(isValid){
-                    const response = await api.post(`/user/changePass?id=${id}&newPass=${newPass}`);
+                    await api.post(`/user/changePass?id=${id}&newPass=${newPass}`);
                     alert("Senha Alterada com Sucesso!");
+                    
                     document.querySelector("#newPass").value="";
                     document.querySelector("#confirmnNewPass").value="";
+                    
                     history.replace("/");
 
                 }else{

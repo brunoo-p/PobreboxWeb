@@ -43,6 +43,16 @@ export const Content = styled.section`
         }
 
     }
+    .saudation{
+        display: none;
+        position: absolute;
+        
+
+        @media (min-width: 1024px){
+            display: flex;
+            right: 13%;
+        }
+    }
 
     .userInfo{
         display: flex;

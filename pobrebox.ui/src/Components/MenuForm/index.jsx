@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Facebook from '../Facebook';
 import { Container, Navigation, PobreboxLogo, Form, PasswordCaracters, Arrow} from './styles';
 import Lottie from 'react-lottie';
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
@@ -205,6 +206,9 @@ export default function MenuForm({setOpenForm}) {
                 <p className="forgotPass" onClick={handleChangePass}>Esqueci a Senha</p>
                 
                 <button onClick={onLogin}> Login </button>
+                
+                <Facebook/>
+
                 <p>
                     <span className="terms"> Copyright © Bruno Paulino </span>
                 </p>

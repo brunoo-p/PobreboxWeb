@@ -9,11 +9,12 @@ export default function Apresentation() {
     let storage;
     const history = useHistory();
     const [ avatar, setAvatar ] = useState();
+    const  [ name, setName ] = useState("");
     
     //--> Get storage to later add user interaction 
     useEffect(() => {
         storage = JSON.parse(localStorage.getItem('user'));
-        console.log(storage);
+        setName(storage.name);
 
     }, []);
     //<--
@@ -51,13 +52,15 @@ export default function Apresentation() {
                         <span> Pobrebox </span>
                     </h1>
 
-                    <div className="userInfo">
+                        <label className="saudation"> Olá, {name} </label>
 
+                    <div className="userInfo">
+                        
                         <label htmlFor="fileAvatar"> <ImageUser src={avatar? avatar : avatarDefault} title="Alterar Imagem"/> </label>
                         <input type="file" id='fileAvatar' onChange={handleAvatar}/>
                         <p onClick={handleExit}>Sair</p>
-                        
-                    </div>
+
+                    </div>   
 
                </Content>
             </Container>

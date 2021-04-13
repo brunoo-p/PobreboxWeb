@@ -32,9 +32,20 @@ export default function BodyApp({items}) {
             
         
             let userLogged = JSON.parse(localStorage.getItem('user'));
+            console.log(userLogged);
+            let userId = userLogged.id;
+            console.log("antes", userId);
+            
+            if(userId.length > 4 ){
+
+                userId = userId.substring(userId.length -4 , userId.length);
+                
+                userId = Number(userId);
+                console.log("depois", userId);
+            }
 
             const uploadedFiles = {
-                idUser: userLogged.id,
+                idUser: userId,
                 docName: nameFile,
                 mimeType: mimeType,
                 content: files,
