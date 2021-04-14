@@ -10,6 +10,8 @@ export const Container = styled.div`
     
     background: ${({ theme }) => theme.colors.tertiaryColor};
     opacity: 0.95;
+    filter: drop-shadow(4px 4px 4px white);
+    border: 1px solid white;
     max-width: 1440px;
 `;
 

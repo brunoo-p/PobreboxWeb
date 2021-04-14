@@ -13,12 +13,17 @@ export const Wrapper = styled.div`
     .contentDirectory{
         display: flex;
         flex: none;
-        margin: 0;
+        margin: 0px;
         overflow-x: hidden;
         height: 100%;
         padding: 5px;
-        justify-content: space-around;
+        justify-content: start;
         transition: 0.3s ease-out;
+        
+        
+        @media (min-width: 1024px){
+            justify-content: space-around;
+        }
     }
     
 `;

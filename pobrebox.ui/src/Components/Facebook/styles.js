@@ -11,10 +11,13 @@ export const FacebookSign = styled.div`
         align-items: center;
         justify-content: space-between;
         padding: 8px;
+        
         border-radius: 8px;
         border: 1px solid #1877F2;
         color: #1877F2;
         background: white;
+        
+        font-size: 15px;
         font-weight: 700;
 
         transform: scale(0.9);

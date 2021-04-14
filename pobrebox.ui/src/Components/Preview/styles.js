@@ -102,6 +102,18 @@ export const ImagePreview = styled.div`
     background-repeat: no-repeat;
     background-position: center;
 
+    transform: scale(1);
+    transition: 0.3s ease-out;
+    --x: 0px;
+    --y: 0px;
+
+    :hover{
+        transform: scale(1.2);
+        background-size: 150%, 125%;
+        background-position: var(--x) var(--y);
+        filter: drop-shadow(3px 2px 3px grey)
+    }
+
     @media (min-width: 1024px){
         display: flex;
         
