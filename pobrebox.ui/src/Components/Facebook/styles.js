@@ -16,9 +16,14 @@ export const FacebookSign = styled.div`
         color: #1877F2;
         background: white;
         font-weight: 700;
-        
+
+        transform: scale(0.9);
+        transition: 0.3s ease-in;
+
         :hover{
-            opacity: 0.8;
+            transform: scale(1);
+            background: #1877F2;
+            color: white;
         }
     }
 `;

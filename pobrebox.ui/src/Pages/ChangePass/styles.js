@@ -98,8 +98,8 @@ export const Aside = styled.aside`
         }
 
     .requestChange{
-        width: 70%;
-        height: 50%;
+        width: 82%;
+        height: 40%;
         max-width: 450px;  
         max-height: 300px;
         

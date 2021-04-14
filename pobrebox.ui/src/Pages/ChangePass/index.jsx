@@ -144,7 +144,7 @@ export default function ChangePass() {
                     <>
                         <section className="requestChange" style={{ backgroundColor: backgroundColor}}>
                             
-                            <p><GiBoxTrap /></p>
+                            <p><GiBoxTrap style={{fill:"#c8ecdd"}}/></p>
                             {!emailSended ?
                                 <>
                                     <span>Informe seu e-mail de cadastro.</span>
