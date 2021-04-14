@@ -8,3 +8,4 @@ export { default as Modal } from './Modal';
 export { default as Preview } from './Preview';
 export { default as Portal } from './Modal/Portal';
 export { default as Facebook } from './Facebook';
+export { default as Google } from './Google';

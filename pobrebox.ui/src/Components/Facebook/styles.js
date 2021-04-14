@@ -10,9 +10,16 @@ export const FacebookSign = styled.div`
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 10px;
-        border-radius: 20px;
-        background: rgb(32,35,199, 0.9);
+        padding: 8px;
+        border-radius: 8px;
+        border: 1px solid #1877F2;
+        color: #1877F2;
+        background: white;
+        font-weight: 700;
+        
+        :hover{
+            opacity: 0.8;
+        }
     }
 `;
 export const FbIcon = styled(TiSocialFacebookCircular)`

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Facebook from '../Facebook';
+import {Facebook, Google} from '../';
 import { Container, Navigation, PobreboxLogo, Form, PasswordCaracters, Arrow} from './styles';
 import Lottie from 'react-lottie';
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
@@ -207,8 +207,12 @@ export default function MenuForm({setOpenForm}) {
                 
                 <button onClick={onLogin}> Login </button>
                 
-                <Facebook/>
+                <span className="or"><p>or</p></span>
 
+                <div className="otherLogin">
+                    <Google/>
+                    <Facebook/>
+                </div>
                 <p>
                     <span className="terms"> Copyright © Bruno Paulino </span>
                 </p>

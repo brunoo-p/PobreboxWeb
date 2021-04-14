@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
-import FacebookLogin from 'react-facebook-login';
+import GoogleLogin from 'react-google-login';
 import { useHistory } from 'react-router';
-import { FacebookSign, FbIcon } from './styles';
 import api from '../../Services/api';
 
-export default function Facebook(){
+import { GoogleSign } from './styles'
+
+export default function Google() {
 
     let history = useHistory();
-
     let name;
     let email;
     let password
-
-    const responseFacebook = (response) => {
+    const responseGoogle = (response) => {
         console.log(response);
+        //console.log(response.profileObj);
        
         if(response.accessToken){
 
-            name = response.name;
-            email = response.email;
-            password = response.id;
+            name = response.profileObj.name;
+            email = response.profileObj.email;
+            password = response.profileObj.googleId;
             onLogin();
         }else{
             alert("Error");
@@ -36,7 +36,7 @@ export default function Facebook(){
         console.log("login", login);
         
         if(login.status === 400 || login.status === 500){
-            alert("Houve um erro ao tentar login com este usuário");
+            alert("Houve um erro ao tentar o login com este usuário");
             
         }else if(login.status === 200){
 
@@ -54,23 +54,15 @@ export default function Facebook(){
     
     }
 
-    const componentClicked = () => { 
-        //setIsLoggedIn(true);
-    }
-
     return (
-        <FacebookSign>
-            <FacebookLogin
-                appId="1121109254980948"
-                autoLoad={false}
-                fields="name,email,picture"
-                onClick={componentClicked}
-                callback={responseFacebook}
-                cssClass="btnFacebook"
-            />
-        </FacebookSign>
+        <GoogleSign>
+            <GoogleLogin
+                clientId="778419440289-hi28jer5jccaqid206pg6iqb470homn1.apps.googleusercontent.com"
+                buttonText="Sign In"
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+                theme="dark"
+                />
+        </GoogleSign>
     )
 }
-
-
-

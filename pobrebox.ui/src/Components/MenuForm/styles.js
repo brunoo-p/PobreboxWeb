@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { ThemeConsumer } from 'styled-components';
 import { GiBoxTrap } from 'react-icons/gi';
 
 export const Container = styled.div`
@@ -119,6 +119,38 @@ export const Form = styled.form`
         }
         :focus{
             outline:none;
+        }
+    }
+
+    .otherLogin{
+        display: flex;
+        width: 100%;
+        height: 25px;
+        padding: 5px;
+        margin-top: 10px;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .or{
+
+        display: flex;
+        width: 100%;
+        height: 25px;
+        padding: 10px;
+        margin-top: 10px;
+        align-items: center;
+        justify-content: center;
+
+        p{
+
+            font-size: 14px;
+            margin-right: 10%;
+            padding: 8px;
+
+            color: ${({ theme }) => theme.font.color};
+            border-radius: 50px;
+            border: 1px solid rgba(16,126,216,0.3);
+
         }
     }
     p{
