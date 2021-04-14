@@ -295,7 +295,7 @@ export const Content = styled.div`
     height: 80px;
     transform: scale(0.95);
     transition: 0.2s ease-in;
-    margin: 0px;
+    margin: 20px;
     perspective: 1200px;
     
     padding: 20px;
@@ -330,6 +330,7 @@ export const Content = styled.div`
     @media (min-width: 1024px){
         max-width: 200px;
         padding: 20px;
+        margin: 0px;
     }
 
     @media (max-width: 550px){

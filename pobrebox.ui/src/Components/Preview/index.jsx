@@ -18,9 +18,20 @@ export default function Preview({initialState, file, setFile, items, setNameFile
     }, [nameFile]);
     //<--
 
+    useEffect(() => {
+        const el = document.querySelector("#image");
+
+        el.addEventListener("mousemove", (e) => {
+        el.style.setProperty('--x', -e.offsetX + "px");
+        el.style.setProperty('--y', -e.offsetY + "px");
+        console.log(e.offsetY);
+        console.log(e.offsetX);
+        });
+    }, []);
 
     //--> Filter mimeTypes for Preview
     let isImage;
+
     useEffect(() => {
         isImage = false;
         let mimeType = file.mimeType.toLowerCase();
@@ -112,7 +123,7 @@ export default function Preview({initialState, file, setFile, items, setNameFile
                     <span> Size: {file.size} </span>
                 </Details>
                 
-                <ImagePreview src= {preview}/>
+                <ImagePreview src= {preview} id="image"/>
                 
                 <div className="settingFile">
                     

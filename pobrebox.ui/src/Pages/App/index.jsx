@@ -273,7 +273,7 @@ export default function Application() {
             </Modal>
             :
             <>
-                {items.length > 3 && <MoveCardsToLeft onClick={() => handleMoveCardsToLeft("dir")}/>}
+                {items.length > 2 && <MoveCardsToLeft onClick={() => handleMoveCardsToLeft("dir")}/>}
                 
                 <DirectoryCard openModal={openModal} items={items} setDirectory={setDirectory}>
 
@@ -297,7 +297,7 @@ export default function Application() {
                     </div>
                 </DirectoryCard>
 
-                {items.length > 3 && <MoveCardsToRight onClick={() => handleMoveCardsToRight("dir")}/>}
+                {items.length > 2 && <MoveCardsToRight onClick={() => handleMoveCardsToRight("dir")}/>}
             </>
             }
             </Wrapper>
