@@ -127,7 +127,7 @@ export const Form = styled.form`
         width: 100%;
         height: 25px;
         padding: 5px;
-        margin-top: 10px;
+        margin-top: 3px;
         align-items: center;
         justify-content: space-between;
     }
@@ -137,7 +137,7 @@ export const Form = styled.form`
         width: 100%;
         height: 25px;
         padding: 10px;
-        margin-top: 10px;
+        margin-top: 15px;
         align-items: center;
         justify-content: center;
 
