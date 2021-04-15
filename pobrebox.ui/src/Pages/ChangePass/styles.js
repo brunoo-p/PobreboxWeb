@@ -77,7 +77,7 @@ export const Content = styled.div`
 
 export const Aside = styled.aside`
     display: flex;
-    width: 50%;
+    width: 70%;
     height: 90%;
     
     flex-direction: column;
@@ -98,7 +98,7 @@ export const Aside = styled.aside`
         }
 
     .requestChange{
-        width: 82%;
+        width: 100%;
         height: 40%;
         max-width: 450px;  
         max-height: 300px;
@@ -133,6 +133,7 @@ export const Aside = styled.aside`
         input{
             display: flex;
             padding: 10px;
+            //width: 100%;
             
             font-size: 16px;
             font-weight: 700;
@@ -157,6 +158,13 @@ export const Aside = styled.aside`
                 border: 1px solid ${({ theme }) => theme.colors.blue};
             }
         }
+
+        @media (min-width: 1024px){
+            width: 82%;
+        }
+    }
+    @media (min-width: 1024px){
+        width: 50%;
     }
 `;
 

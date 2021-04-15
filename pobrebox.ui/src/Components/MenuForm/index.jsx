@@ -213,7 +213,7 @@ export default function MenuForm({setOpenForm}) {
                     <Google/>
                     <Facebook/>
                 </div>
-                <p>
+                <p style={{color: "#485460"}}>
                     <span className="terms"> Copyright © Bruno Paulino </span>
                 </p>
             </Form>
