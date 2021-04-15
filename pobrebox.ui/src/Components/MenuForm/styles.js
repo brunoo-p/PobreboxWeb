@@ -159,7 +159,7 @@ export const Form = styled.form`
         justify-content: center;
         font-size: 10px;
         font-weight: 700;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
         color: ${({ theme }) => theme.colors.blue};
         align-items: center;
 

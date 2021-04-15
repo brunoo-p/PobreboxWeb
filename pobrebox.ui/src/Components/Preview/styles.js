@@ -111,7 +111,7 @@ export const ImagePreview = styled.div`
         transform: scale(1.2);
         background-size: 150%, 125%;
         background-position: var(--x) var(--y);
-        filter: drop-shadow(3px 2px 3px grey)
+        filter: drop-shadow(3px 2px 6px grey)
     }
 
     @media (min-width: 1024px){
