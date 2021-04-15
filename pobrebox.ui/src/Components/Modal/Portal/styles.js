@@ -7,6 +7,7 @@ export const Container = styled.div`
     right: 0;
     bottom: 0;
     background: rgba(4,4,4,.8);
+    z-index: 999;
 `;
 
 export const Content = styled.div`
@@ -20,11 +21,19 @@ export const Content = styled.div`
     transform: translateX(0);
     transition: 0.5s ease-out;
     
+
     &.close{
-        width: 60%;
-        height: 60%;
-        transition: 0.35s ease-in;
-        transform: translateX(170%);
+        transform: scale(0);
+        animation 0.7s show ;
+
+        @keyframes hidden {
+            from{
+                transform:scale(1);
+            }
+            to{
+                transform: scale(0);
+            }
+        }
     }
 
     transform: scale(1);
