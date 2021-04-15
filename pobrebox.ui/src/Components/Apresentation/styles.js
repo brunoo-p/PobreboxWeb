@@ -10,6 +10,14 @@ export const Container = styled.div`
     max-width: 1440px;
 `;
 
+export const Locked = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+`;
+
 export const Content = styled.section`
     z-index: 3;
     width: 85%;

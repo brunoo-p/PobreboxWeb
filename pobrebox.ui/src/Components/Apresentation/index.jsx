@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
-//import { useUserForm } from '../../Context/SetUser';
-import avatarDefault from '../../Assets/avatar.png';
-import { Container, Content, PobreboxLogo, ImageUser } from './styles';
 import { useHistory } from 'react-router-dom';
+import {Portal} from '..';
+import Lottie from 'react-lottie';
+import avatarDefault from '../../Assets/avatar.png';
+import { Container, Content, PobreboxLogo, ImageUser, Locked } from './styles';
+import locked from '../../Assets/Lotties/blocked.json';
 
 export default function Apresentation() {
 
     let storage;
     const history = useHistory();
     const [ avatar, setAvatar ] = useState();
-    const  [ name, setName ] = useState("");
+    const [ name, setName ] = useState("");
+    const [blocked, setBlocked ] = useState(false);
     
     //--> Get storage to later add user interaction 
     useEffect(() => {
@@ -34,17 +37,38 @@ export default function Apresentation() {
 
     //--> Remove localStorage and Exit
     const handleExit = () => {
+        setBlocked(true);
+        
         setTimeout(() => {
             localStorage.removeItem('user');
             history.push("/");
-        }, 2000)
-        
-        
+        }, 3700)
     }
+    //<--
+
+    //--> Lottie default options
+    const defaultOptions = {
+        loop: false,
+        autoplay: true,
+        animationData: locked,
+        rendererSettings: {
+        preserveAspectRatio: "xMidYMid slice"
+        }
+    }
+    //<--
 
     return (
         <>
             <Container>
+                { blocked &&
+                    <Portal>
+                        
+                        <Locked >
+                            <Lottie options ={defaultOptions} width={500} height={500}/>
+                        </Locked>
+                        
+                    </Portal>
+                }
                 
                 <Content>
                     <h1>
