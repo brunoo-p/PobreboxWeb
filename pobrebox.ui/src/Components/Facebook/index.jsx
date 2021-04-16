@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import FacebookLogin from 'react-facebook-login';
 import { useHistory } from 'react-router';
-import { FacebookSign, FbIcon } from './styles';
+import { FacebookSign } from './styles';
 import api from '../../Services/api';
 
 export default function Facebook(){

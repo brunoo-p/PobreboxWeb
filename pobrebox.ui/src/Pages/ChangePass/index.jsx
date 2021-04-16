@@ -132,7 +132,7 @@ export default function ChangePass() {
 
 
     let backgroundColor = emailSended ? "rgba(0,0,0,.5)" : "rgba(245,245,245,0.95)";
-    let className = borderInput === null? '' : borderInput ? 'right' : 'wrong';
+    let nameClass = borderInput === null? '' : borderInput ? 'right' : 'wrong';
     
     return (
         <Container>
@@ -175,7 +175,7 @@ export default function ChangePass() {
                         <Form>
                             <h2>{email}</h2>
                             <input className="password" type="password" placeholder="Digite sua nova senha" onChange={(event) => setNewPass(event.target.value)} id="newPass"/>
-                            <input className="confirmPass" type="password" placeholder="Confirme a senha" className= {className} onChange={(event) => setConfirmNewPass(event.target.value)} id="confirmnNewPass"/>
+                            <input className={nameClass} type="password" placeholder="Confirme a senha" onChange={(event) => setConfirmNewPass(event.target.value)} id="confirmnNewPass"/>
                             <input className="btnSubmit" type="submit" value="Mudar a Senha" onClick={handleSubmitChange} style={{backgroundColor: "rgba(23,123,223,0.6"}}/>
                         </Form>
                     </>

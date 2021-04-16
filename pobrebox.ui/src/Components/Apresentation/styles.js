@@ -3,7 +3,9 @@ import { GiBoxTrap } from 'react-icons/gi';
 
 export const Container = styled.div`
     display: flex;
-    background: ${({theme}) => theme.colors.quaternaryColor};
+    //background: ${({theme}) => theme.colors.quaternaryColor};
+    background: linear-gradient(48deg,rgb(34,47,92, 0.9), rgba(2,2,2,.7) 40.26%);
+    filter: drop-shadow(1px 1px 88px rgba(245,245,245,.7));
     opacity: 0.99;
     width: 100%;
     height: auto;
@@ -16,6 +18,7 @@ export const Locked = styled.div`
     justify-content: center;
     width: 100%;
     height: 100%;
+    
 `;
 
 export const Content = styled.section`
@@ -23,8 +26,9 @@ export const Content = styled.section`
     width: 85%;
     margin-left: 20%;
     color: ${({ theme }) => theme.colors.secondaryColor};
-
+    box-shadow: 0px 2px 18px rgb(34,47,62, 0.9);
     display: flex;
+    border-radius: 10px;
     justify-content: space-between;
     align-items: center;
 
