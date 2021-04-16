@@ -4,7 +4,7 @@ import { Apresentation, BodyApp, DirectoryCard, Modal, Portal} from '../../Compo
 import api from '../../Services/api';
 import { base64ToArrayBuffer, createAndDownloadBlobFile } from '../../Services/ToArrayBuffer';
 
-import disquete from '../../Assets/disquete.jpg';
+import disquete from '../../Assets/disquete.jpeg';
 
 import Lottie from 'react-lottie';
 import loadingPacMan from '../../Assets/Lotties/loading.json';
@@ -20,7 +20,7 @@ export default function Application() {
     ]
     
     const [showModal, setShowModal ] = useState(false);
-    const [directory, setDirectory ] = useState("files");
+    const [directory, setDirectory ] = useState("");
     const [items, setItems ] = useState(defaultDirectories);
     const [documents, setDocuments ] = useState("");
     const [search, setSearch ] = useState(false);
@@ -53,7 +53,7 @@ export default function Application() {
         (async function getDocs(){
             if(search){
                 let storage = JSON.parse(localStorage.getItem('user'));
-                console.log(storage.id);
+                
                 const response = await api.get(`/doc/${storage.id}/${directory}`);
 
                 await verifyContent(response);
@@ -87,6 +87,7 @@ export default function Application() {
 
             console.log(response);
             const files = response.data.map( file => {
+
                 const {id, idUser, docName, directory, content} = file;
                 return {id, idUser, docName, directory, content };
     
@@ -109,15 +110,15 @@ export default function Application() {
 
     const closeModal = () => {
         setShowModal(false);
-        setDocuments([]);
+
         setDocuments(documents);
     }
     //<--
 
     //--> Set flag for file deleted in the database 
     const handleExclude = async (id) => {
-        let response = await api.delete(`/doc/${id}`);
-        console.log("exclude", response);
+        await api.delete(`/doc/${id}`);
+        
         setDocuments(documents);
         setSearch(true);
     }

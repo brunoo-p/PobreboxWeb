@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import {GoFileDirectory} from 'react-icons/go';
 import { BiRightArrowCircle, BiLeftArrowCircle } from 'react-icons/bi';
 import { TiFolderAdd } from 'react-icons/ti';
-import download from '../../Assets/saved.jpg';
-import fundo from '../../Assets/fundo.png';
+import download from '../../Assets/saved.jpeg';
+import fundo from '../../Assets/fundo.jpeg';
 
 export const Aside = styled.div`
     width: 100%;

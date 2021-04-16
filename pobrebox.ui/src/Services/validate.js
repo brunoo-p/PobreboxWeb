@@ -19,6 +19,8 @@ const validate = async (field, content) => {
             return foundPass;
 
         break;
+
+        default: return null;
     }
 }
 

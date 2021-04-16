@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React  from 'react';
 import GoogleLogin from 'react-google-login';
 import { useHistory } from 'react-router';
 import api from '../../Services/api';

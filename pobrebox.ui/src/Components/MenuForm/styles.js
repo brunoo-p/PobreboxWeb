@@ -1,4 +1,4 @@
-import styled, { ThemeConsumer } from 'styled-components';
+import styled from 'styled-components';
 import { GiBoxTrap } from 'react-icons/gi';
 
 export const Container = styled.div`
