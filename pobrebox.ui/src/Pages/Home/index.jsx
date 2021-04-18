@@ -1,8 +1,11 @@
 import React, {useEffect, useState} from 'react';
+import { useHistory } from 'react-router';
 import { Section, SideMenu, MenuForm } from '../../Components';
 import data from '../../data';
 
 export default function Home() {
+
+    let history = useHistory();
 
     //--> Remove access to Change Password Route
     useEffect(() => {
@@ -10,6 +13,14 @@ export default function Home() {
     
     },[]);
     //<--
+
+    useEffect(() => {
+        let storage = localStorage.getItem('user');
+
+        if(storage !== null){
+            history.push("/app");
+        }
+    }, [localStorage]);
 
     const [ openForm, setOpenForm ] = useState(false);
     return (

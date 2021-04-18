@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Aside, Wrapper, ContentModal, MoveCardsToLeft, MoveCardsToRight, FileDB, ImageModal, Content, DirectoryLogo, Padlock, AddDirectory} from './styles';
+import { Aside, Wrapper, ContentModal, MoveCardsToLeft, MoveCardsToRight, FileDB, ImageModal, Padlock, AddDirectory} from './styles';
 import { Apresentation, BodyApp, DirectoryCard, Modal, Portal} from '../../Components';
 import api from '../../Services/api';
 import { base64ToArrayBuffer, createAndDownloadBlobFile } from '../../Services/ToArrayBuffer';
@@ -115,6 +115,7 @@ export default function Application() {
     }
     //<--
 
+
     //--> Set flag for file deleted in the database 
     const handleExclude = async (id) => {
         await api.delete(`/doc/${id}`);
@@ -123,6 +124,7 @@ export default function Application() {
         setSearch(true);
     }
     //<--
+
 
     //--> Config Lottie Files
     const setLottie = (loop, data) => {
@@ -137,6 +139,7 @@ export default function Application() {
         return options;
     }
     //<--
+
 
     //--> SET new directory for files
     const className = addDirectory ? 'add' : 'inputDirectory';
@@ -156,6 +159,7 @@ export default function Application() {
         }
     }
     //<--
+
 
     //--> Slide arrow for Carousel
     const handleMoveCardsToLeft = (type) => {
@@ -199,6 +203,7 @@ export default function Application() {
         
     }
     //<--
+
 
     //--> Recover file from database
     const handleDownload = (idFile) => {
@@ -248,7 +253,7 @@ export default function Application() {
                         <div className='content' style={{width: documents.length > 0 ? documents.length * 150 : 250, marginLeft: scrollX}} >
                         
                         {documents && documents.length > 0 ? documents.map((doc, index) => (
-
+                            
                             <FileDB key={index} >
                                 <button className= "btnExclude" title="Excluir" onClick={() => handleExclude(doc.id)}> X </button>
                                 <ImageModal src={disquete} title="Recuperar" onClick={() => handleDownload(doc.id)}/>
@@ -273,35 +278,15 @@ export default function Application() {
                     
             </Modal>
             :
-            <>
-                {items.length > 2 && <MoveCardsToLeft onClick={() => handleMoveCardsToLeft("dir")}/>}
-                
-                <DirectoryCard openModal={openModal} items={items} setDirectory={setDirectory}>
-
-                        
-                    <div className="contentDirectory" style={{width: items.length * 350, marginLeft: scrollDir}}>
+                <>
+                    <MoveCardsToLeft onClick={() => handleMoveCardsToLeft("dir")}/>
                     
-                    { items && items.map((item, index) => {
-                        
-                        return(
-                            <ol key={index} >
-                                <li >
-                                    <Content onClick={() => openModal(item.text)} >
-                                        <h3><DirectoryLogo/></h3>
-                                        <span>{item.text}</span>
-                                        <p>click para ver os arquivos salvos</p>
-                                    </Content>
-                                </li>
-                            </ol>
-                        )})
-                    }
-                    </div>
-                </DirectoryCard>
+                    <DirectoryCard openModal={openModal} items={items} scrollDir={scrollDir} />
 
-                {items.length > 2 && <MoveCardsToRight onClick={() => handleMoveCardsToRight("dir")}/>}
-            </>
+                    <MoveCardsToRight onClick={() => handleMoveCardsToRight("dir")}/>
+                </>
             }
             </Wrapper>
-        </Aside>
+        </Aside >
     )
 }

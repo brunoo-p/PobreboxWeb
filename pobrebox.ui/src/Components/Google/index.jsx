@@ -20,6 +20,7 @@ export default function Google() {
             name = response.profileObj.name;
             email = response.profileObj.email;
             password = response.profileObj.googleId;
+
             onLogin();
         }else{
             alert("Error");
@@ -45,8 +46,8 @@ export default function Google() {
 
             let storage = JSON.parse(localStorage.getItem('user'));
             console.log("storage", storage);
-
-            history.replace("/app");
+            
+            setTimeout(() => history.replace("/app"), 1000);
         }else {
             await api.post("/user/register?", {name, email, password});
             onLogin();
